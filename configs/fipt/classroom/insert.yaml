@@ -1,0 +1,78 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+type: 'scene'
+
+PerspectiveCamera:
+  type: 'perspective'
+  fov: 45
+  film:
+    type: 'hdrfilm'
+    width: 1920
+    height: 1080
+    rfilter:
+      type: 'box'
+  
+Integrator:
+  type: 'path'
+  max_depth: 7
+
+main_scene:
+  type: 'ply'
+  filename: ''
+  bsdf:
+    type: 'twosided'
+    fipt_bsdf:
+      type: 'fipt'
+      emitter_path: ''
+      brdf_path: ''
+
+light_plane:
+  type: 'rectangle'
+  to_world:
+    - type: 'translate'
+      value: [1.6643, 1.7467, 3.0747]
+    - type: 'scale'
+      value: [1.287,1,0.809]
+    - type: 'rotate'
+      axis: [1, 0, 0]
+      angle: 90
+  bsdf:
+    type: 'twosided'
+    bsdf:
+      type: 'diffuse'
+      reflectance:
+        type: 'rgb'
+        value: [0., 0., 0.]
+  emitter:
+    type: 'area'
+    radiance:
+      type: 'rgb'
+      value: [15, 15, 18]
+
+sphere_2:
+  type: 'sphere'
+  to_world:
+    - type: 'translate'
+      value: [0.31224, -0.768295, 2.71416]
+    - type: 'scale'
+      value: [0.3, 0.3, 0.3]
+  bsdf:
+    type: 'conductor'
+    material: 'none'
+
+sphere_3:
+  type: 'sphere'
+  to_world:
+    - type: 'translate'
+      value: [-1.1346, -0.768295, 2.71416]
+    - type: 'scale'
+      value: [0.3, 0.3, 0.3]
+  bsdf:
+    type: 'diffuse'
+    reflectance: 
+      type: 'rgb'
+      value: [0.2, 0.25, 0.7]

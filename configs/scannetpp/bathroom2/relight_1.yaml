@@ -1,0 +1,41 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+type: 'scene'
+
+PerspectiveCamera:
+  type: 'perspective'
+  fov: 45
+  film:
+    type: 'hdrfilm'
+    width: 1920
+    height: 1080
+    rfilter:
+      type: 'box'
+  
+Integrator:
+  type: 'path'
+  max_depth: 7
+
+main_scene:
+  type: 'ply'
+  filename: ''
+  bsdf:
+    type: 'twosided'
+    fipt_bsdf:
+      type: 'fipt'
+      emitter_path: ''
+      brdf_path: ''
+
+disco_ball:
+  T: 60
+  position: [0.0 , 0.3 , -0.5]
+  radius: 0.2
+  light_intensity: 40
+  light_num: 40
+  light_radius_rate: 0.1
+  spot_intensity: 0.5
+  spot_cutoff_angle: 20.0

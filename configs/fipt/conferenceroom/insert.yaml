@@ -1,0 +1,97 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+type: 'scene'
+
+PerspectiveCamera:
+  type: 'perspective'
+  fov: 45
+  film:
+    type: 'hdrfilm'
+    width: 1920
+    height: 1080
+    rfilter:
+      type: 'box'
+  
+Integrator:
+  type: 'path'
+  max_depth: 7
+
+main_scene:
+  type: 'ply'
+  filename: ''
+  bsdf:
+    type: 'twosided'
+    fipt_bsdf:
+      type: 'fipt'
+      emitter_path: ''
+      brdf_path: ''
+
+emitter_conferenceroom:
+  type: 'ply'
+  filename: 'checkpoints/fipt_real_conferenceroom/bake/emitter.ply'
+  to_world:
+    - type: 'translate'
+      value: [0.0, 0.0, 0.0]
+    - type: 'scale'
+      value: [1.0, 1.0, 1.0]
+  bsdf:
+    type: 'diffuse'
+    reflectance:
+      type: 'rgb'
+      value: [0., 0., 0.]
+  emitter:
+    type: 'area'
+    radiance:
+      type: 'rgb'
+      value: [5, 5, 5.4]
+
+teapot: 
+  type: 'obj'
+  filename: 'outputs/00_assets/teapot.obj'
+  to_world:
+    - type: 'translate'
+      value: [-1.37901, 0.303306, -0.869783]
+    - type: 'scale'
+      value: [0.15, 0.15, 0.15]
+    - type: 'rotate'
+      axis: [1, 0, 0]
+      angle: 180
+    - type: 'rotate'
+      axis: [0, 1, 0]
+      angle: -45
+  bsdf:
+    type: 'conductor'
+    material: 'Ag'
+    
+lucy: 
+  type: 'ply'
+  filename: 'outputs/00_assets/lucy.ply'
+  to_world:
+    - type: 'translate'
+      value: [-1.00135, -0.148423, -1.13769]
+    - type: 'scale'
+      value: [0.001, 0.001, 0.001]
+    - type: 'rotate'
+      axis: [1, 0, 0]
+      angle: 90
+    - type: 'rotate'
+      axis: [0, 1, 0]
+      angle: -12
+    - type: 'rotate'
+      axis: [0, 0, 1]
+      angle: 90
+  bsdf:
+    type: 'roughconductor'
+    distribution: 'ggx'
+    alpha_u: 0.05
+    alpha_v: 0.3
+    eta: 
+      type: 'rgb'
+      value: [0.47, 0.35, 0.29]
+    k: 
+      type: 'rgb'
+      value: [0.332, 0.239, 0.235]

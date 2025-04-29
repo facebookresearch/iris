@@ -1,0 +1,12 @@
+/datas/
+**/__pycache__/
+notebooks/*
+**/.ipynb_checkpoints
+/logs/
+/outputs/
+/outputs_ldr/
+/checkpoints/
+/pretrained/
+/data/
+lightning_logs/
+*-Copy*

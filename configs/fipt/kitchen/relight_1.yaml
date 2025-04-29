@@ -1,0 +1,54 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+# All rights reserved.
+
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+
+type: 'scene'
+
+PerspectiveCamera:
+  type: 'perspective'
+  fov: 45
+  film:
+    type: 'hdrfilm'
+    width: 1920
+    height: 1080
+    rfilter:
+      type: 'box'
+  
+Integrator:
+  type: 'path'
+  max_depth: 7
+
+main_scene:
+  type: 'ply'
+  filename: ''
+  bsdf:
+    type: 'twosided'
+    fipt_bsdf:
+      type: 'fipt'
+      emitter_path: ''
+      brdf_path: ''
+
+light_plane:
+  type: 'rectangle'
+  to_world:
+    - type: 'translate'
+      value: [0.068418, 3.2243, 0.85067]
+    - type: 'scale'
+      value: [0.4, 0.4, 0.4]
+    - type: 'rotate'
+      axis: [1, 0, 0]
+      angle: 90
+  bsdf:
+    type: 'twosided'
+    bsdf:
+      type: 'diffuse'
+      reflectance:
+        type: 'rgb'
+        value: [0., 0., 0.]
+  emitter:
+    type: 'area'
+    radiance:
+      type: 'rgb'
+      value: [20, 20, 20]
